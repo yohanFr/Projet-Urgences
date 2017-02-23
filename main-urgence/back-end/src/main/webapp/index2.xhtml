@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSF 2.2 Hello World</title>
+</h:head>
+<h:body>
+	<div style="float: center; width: 75%">
+		<p:dataTable var="theme" value="#{themeCtrl.allTheme}">
+			<p:column headerText="Id">
+				<h:outputText value="#{theme.idTheme}" />
+			</p:column>
+
+			<p:column headerText="Titre">
+				<h:outputText value="#{theme.label}" />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:dataTable var="formation" value="#{formCtrl.allFormation}">
+			<p:column headerText="Id">
+				<h:outputText value="#{formation.idForm}" />
+			</p:column>
+
+			<p:column headerText="Titre">
+				<h:outputText value="#{formation.titre}" />
+			</p:column>
+
+			<p:column headerText="Duree">
+				<h:outputText value="#{formation.duree}" />
+			</p:column>
+			<p:column headerText="Prix">
+				<h:outputText value="#{formation.prix}" />
+			</p:column>
+			<p:column headerText="audience">
+				<h:outputText value="#{formation.audience}" />
+			</p:column>
+			<p:column headerText="Objectif">
+				<h:outputText value="#{formation.objectif}" />
+			</p:column>
+			<p:column headerText="Outils">
+				<h:outputText value="#{formation.outils}" />
+			</p:column>
+			<p:column headerText="Plan">
+				<h:outputText value="#{formation.plan}" />
+			</p:column>
+		</p:dataTable>
+
+		<h:form>
+
+			<p:commandButton value="Ajouter un compte" icon="ui-icon-check"
+				style="background:green;margin-right:10px;color:black;width:100%;"
+				action="#{accountCtrl.addAccount}" />
+		</h:form>
+		<h:form>
+
+			<p:panel header="Transfert">
+				<p:messages autoUpdate="true" />
+
+				<h:panelGrid id="grid" columns="4" cellpadding="5">
+
+					<h:outputLabel for="number" value="Compte à débiter:"
+						style="font-weight:bold" />
+					<p:inputText id="number1" value="#{transfertBean.cpt1}"
+						label="Compte 1" required="true">
+						<f:validateDoubleRange minimum="1" maximum="2" />
+						<p:ajax event="keyup" update="prefix" />
+					</p:inputText>
+					<p:message for="number1" />
+					<h:outputText value="#{transfertBean.cpt1}" />
+
+					<h:outputLabel for="number" value="Compte a créditer:"
+						style="font-weight:bold" />
+					<p:inputText id="number2" value="#{transfertBean.cpt2}"
+						label="Compte 2" required="true">
+						<f:validateDoubleRange minimum="1" maximum="2" />
+					</p:inputText>
+					<p:message for="number2" />
+					<h:outputText value="#{transfertBean.cpt2}" />
+
+
+
+
+					<h:outputLabel for="prefix" value="Montant : "
+						style="font-weight:bold" />
+					<p:spinner id="prefix" value="#{transfertBean.amount}"
+						stepFactor="5" prefix="€ " min="0" max="20"
+						disabled="#{transfertBean.cpt1==null}" />
+
+
+
+
+
+
+
+				</h:panelGrid>
+				<p:commandButton value="Transfert" update="grid"
+					icon="ui-icon-check" validateClient="true"
+					style="margin-right:10px"
+					action="#{transfertBean.transfertAccount}" />
+
+			</p:panel>
+		</h:form>
+
+	</div>
+
+</h:body>
+
+</html>

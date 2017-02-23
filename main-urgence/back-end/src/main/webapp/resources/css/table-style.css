@@ -1,0 +1,144 @@
+.order-table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.order-table td {
+	border: 1px solid black;
+}
+
+.list-table td {
+	background: #dddddd;
+	border: 0px;
+	border-bottom: 1px groove black;
+	font-size: 12px;
+}
+
+.list-table-text {
+	font-size: 12px;
+}
+
+.order-table-header {
+	-webkit-column-width: 100px; /* Chrome, Safari, Opera */
+	-moz-column-width: 100px; /* Firefox */
+	column-width: 100px;
+	max-width: 100px;
+	word-wrap: break-word;
+	text-align: center;
+	table-layout: fixed;
+	color: black;
+	background: none repeat scroll 0 0 #888888;
+	border: 1px solid #BBBBBB;
+	padding: 7px;
+	font-size: 14px;
+}
+.order-table-header {
+	word-wrap: break-word;
+	text-align: center;
+	table-layout: fixed;
+	color: black;
+	background: none repeat scroll 0 0 #888888;
+	border: 1px solid #BBBBBB;
+	padding: 7px;
+	font-size: 14px;
+}
+
+.phoneLine {
+	border: 0px;
+}
+
+.addModifTable {
+	border: 2px black;
+	text-align: center;
+	background-color: lightgray;
+	text-align: left;
+}
+
+.addModifTable thead td {
+	font-weight: bold;
+	color: white;
+	background-color: black;
+	height: 25px;
+}
+
+.addModifTable textarea input {
+	width: 380px;
+}
+
+.order-table-odd-row {
+	text-align: center; #
+	background: none repeat scroll 0 0 #FFFFF00;
+	border: 1px solid #ff0000;
+}
+
+.order-table-col {
+	background: :#ff0000;
+}
+
+.order-table-even-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #d4bbde;
+	border-top: 1px solid #BBBBBB;
+}
+
+.addButton {
+	display: block;
+	width: 100%;
+	background-color: lightgreen;
+	color: #000;
+	border: none;
+	padding: 10px 20px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.redCrossButton {
+	border: 0px;
+	width: 25px;
+	height: 25px;
+	background: url("#{resource['img/delete-button.png']}");
+	cursor: pointer;
+}
+
+.updateButton {
+	display: block;
+	width: 100%;
+	background: orange;
+	color: #000;
+	border: none;
+	padding: 10px 20px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.updateButton:disabled {
+	display: block;
+	width: 100%;
+	background: gray;
+	color: #000;
+	border: none;
+	padding: 10px 20px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: crosshair;
+}
+
+.disableButton {
+	background: grey;
+}
+
+.deleteButton {
+	display: block;
+	width: 100%;
+	background: red;
+	color: #000;
+	border: none;
+	padding: 10px 20px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+}

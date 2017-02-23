@@ -1,0 +1,23 @@
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLShema-instance"
+	xmlns:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	<application>
+		<locale-config>
+			<default-locale>fr</default-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>messages1</base-name>
+			<var>msg1</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>messages1_fr</base-name>
+			<var>msg1</var>
+		</resource-bundle>
+		<!-- <resource-bundle> <base-name>message2</base-name> <var>msg2</var> 
+			</resource-bundle> -->
+	</application>
+	<validator>
+		<validator-id>MyValidatorBean</validator-id>
+		<validator-class>fr.yohan.bean.ValidatorBean</validator-class>
+	</validator>
+</faces-config>

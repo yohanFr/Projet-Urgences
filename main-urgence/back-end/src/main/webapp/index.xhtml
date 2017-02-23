@@ -1,0 +1,253 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSF 2.2 Hello World</title>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<div style="float: center; width: 75%">
+
+		<h3>On-Demand Loading</h3>
+		<p:tabView dynamic="true" cache="true">
+			<p:tab title="Medecins">
+				<div style="display: inline-block;">
+					<h:form>
+						<h:messages style="color:red" />
+						<h:dataTable id="medecinTable" value="#{medecinCtrl.allMedecins}"
+							var="medecin" styleClass="order-table"
+							headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row"
+							columnClasses="order-table-col">
+							<h:column>
+								<f:facet name="header">#{msg1.titre}</f:facet>
+								<h:inputText value="#{medecin.titre}" size="10"
+									rendered="#{medecin.editable}" />
+								<h:outputText value="#{medecin.titre}"
+									rendered="#{not medecin.editable}" />
+
+							</h:column>
+							<h:column>
+								<!-- column header -->
+								<f:facet name="header">#{msg1.firstName}</f:facet>
+								<!-- row record -->
+								<h:inputText value="#{medecin.nom}" size="10"
+									rendered="#{medecin.editable}" />
+								<h:outputText value="#{medecin.nom}"
+									rendered="#{not medecin.editable}" />
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{msg1.lastName}</f:facet>
+								<h:inputText value="#{medecin.prenom}" size="10"
+									rendered="#{medecin.editable}" />
+								<h:outputText value="#{medecin.prenom}"
+									rendered="#{not medecin.editable}" />
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{msg1.address}</f:facet>
+
+								<div
+									style="display: table-caption; text-align: right; padding: 5px;">
+									<DIV style="display: inline-flex;">
+										<h:outputText value="#{msg1.numero}"
+											rendered="#{medecin.editable}" />
+										<h:inputText value="#{medecin.adresse.numero}"
+											rendered="#{medecin.editable}" />
+									</DIV>
+									<DIV style="display: inline-flex;">
+										<h:outputText value="#{msg1.voie}"
+											rendered="#{medecin.editable}" />
+										<h:inputText value="#{medecin.adresse.voie}"
+											rendered="#{medecin.editable}" />
+									</DIV>
+									<DIV style="display: inline-flex;">
+										<h:outputText value="#{msg1.codePostal}"
+											rendered="#{medecin.editable}" />
+
+										<h:inputText value="#{medecin.adresse.codePostal}"
+											rendered="#{medecin.editable}" />
+									</DIV>
+									<DIV style="display: inline-flex;">
+										<h:outputText value="#{msg1.ville}"
+											rendered="#{medecin.editable}" />
+
+										<h:inputText value="#{medecin.adresse.ville}"
+											rendered="#{medecin.editable}" />
+									</DIV>
+									<DIV style="display: inline-flex;">
+										<h:outputText value="#{msg1.pays}"
+											rendered="#{medecin.editable}" />
+
+										<h:inputText value="#{medecin.adresse.pays}"
+											rendered="#{medecin.editable}" />
+									</DIV>
+
+								</div>
+
+								<table style="font-size: 12px;">
+									<tr>
+										<td style="border: 0px;"><h:outputText value="#{medecin.adresse.numero}  "
+												rendered="#{not medecin.editable}" /> <h:outputText
+												value="#{medecin.adresse.voie}"
+												rendered="#{not medecin.editable}" /></td>
+									</tr>
+									<tr>
+										<td style="border: 0px;"><h:outputText value="#{medecin.adresse.codePostal}  "
+												rendered="#{not medecin.editable}" /> <h:outputText
+												value="#{medecin.adresse.ville}"
+												rendered="#{not medecin.editable}" /></td>
+									</tr>
+									<tr>
+										<td style="border: 0px;"><h:outputText value="#{medecin.adresse.pays}"
+												rendered="#{not medecin.editable}" /></td>
+									</tr>
+								</table>
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{msg1.telephones}</f:facet>
+
+
+								<h:dataTable id="telephoneEditionTable"
+									value="#{medecin.telephones}" rendered="#{medecin.editable}"
+									var="telephone" width="100%" style="border:0px;">
+									<h:column>
+										<DIV style="display: inline-flex; width: 100%;">
+											<h:inputText value="#{telephone.numero}" size="10"
+												style="width:100%;"
+												onkeypress="if(event.which &lt; 48 || event.which &gt; 57 ) if(event.which != 8) if(event.keyCode != 9) return false;" />
+											<h:commandButton
+												actionListener="#{medecinCtrl.deleteTelephone(medecin,telephone)}"
+												styleClass="redCrossButton" />
+										</DIV>
+
+									</h:column>
+								</h:dataTable>
+
+
+								<h:commandButton rendered="#{medecin.editable}"
+									value="#{msg1.addANumber}"
+									actionListener="#{medecinCtrl.addTelephone(medecin)}"
+									styleClass="addButton" />
+
+								<h:dataTable id="telephoneTable" value="#{medecin.telephones}"
+									rendered="#{not medecin.editable}" var="telephone"
+									styleClass="list-table" width="100%" style="border:0px;">
+									<h:column>
+										<h:outputText value="#{telephone.numero}" size="10" />
+									</h:column>
+								</h:dataTable>
+
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{msg1.specialisations}</f:facet>
+
+
+								<h:dataTable id="specialisationEditionTable"
+									value="#{medecin.specialisations}"
+									rendered="#{medecin.editable}" var="specialisation"
+									width="100%" style="border:0px;">
+									<h:column>
+										<DIV style="display: inline-flex; width: 100%;">
+											<h:inputText value="#{specialisation.intitule}" size="10"
+												style="width:100%;" />
+											<h:commandButton
+												actionListener="#{medecinCtrl.deleteSpecialisation(medecin,specialisation)}"
+												styleClass="redCrossButton" />
+										</DIV>
+
+									</h:column>
+								</h:dataTable>
+
+
+								<h:commandButton rendered="#{medecin.editable}"
+									value="#{msg1.addASpecialisation}"
+									actionListener="#{medecinCtrl.addSpecialisation(medecin)}"
+									styleClass="addButton" />
+
+								<h:dataTable id="specialisationTable"
+									value="#{medecin.specialisations}"
+									rendered="#{not medecin.editable}" var="specialisation"
+									styleClass="list-table" width="100%" style="border:0px;">
+									<h:column>
+										<h:outputText value="#{specialisation.intitule}" size="10" />
+									</h:column>
+								</h:dataTable>
+
+
+							</h:column>
+							<!-- 						<h:column>
+								<f:facet name="header">#{msg1.geolocalisation}</f:facet>
+								<h:inputText value="#{medecin.gpsLoc}" size="10"
+									rendered="#{medecin.editable}" />
+								<h:outputText value="#{medecin.gpsLoc}"
+									rendered="#{not medecin.editable}" />
+
+							</h:column> -->
+							<h:column>
+								<h:commandButton value="#{msg1.modify}"
+									disabled="#{medecin.editable}"
+									actionListener="#{medecinCtrl.editMedecin(medecin)}"
+									styleClass="updateButton" />
+							</h:column>
+							<h:column>
+							
+
+
+							
+								<h:commandButton id="addButton" value="#{msg1.delete}"
+									action="#{medecinCtrl.delete(medecin)}"
+									styleClass="deleteButton" onclick="if (! confirm('Really delete this?') ) { return false;}; return true; "
+									/>
+							</h:column>
+						</h:dataTable>
+
+
+						<h:commandButton id="addMedecinButton"
+							rendered="#{not medecinCtrl.edition}" value="#{msg1.addAMedecin}"
+							action="#{medecinCtrl.outToNewMedecin}"
+							actionListener="#{medecinCtrl.preAddMedecin}"
+							styleClass="addButton" />
+
+
+						<h:commandButton value="#{msg1.save}"
+							rendered="#{medecinCtrl.edition}"
+							action="#{medecinCtrl.saveModif}" styleClass="updateButton">
+						</h:commandButton>
+
+					</h:form>
+				</div>
+
+			</p:tab>
+			<p:tab title="Infirmiers">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+					<h:outputText value="Francis Ford Coppola's legendary..." />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Centre Medicaux">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+					<h:outputText value="After a break of more than 15 years..." />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Pharmacies">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+					<h:outputText value="After a break of more than 15 years..." />
+				</h:panelGrid>
+			</p:tab>
+
+
+
+		</p:tabView>
+
+	</div>
+</h:body>
+
+</html>

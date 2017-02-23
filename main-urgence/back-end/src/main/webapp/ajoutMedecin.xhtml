@@ -1,0 +1,149 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<title><h:outputFormat value="#{msg1.addA}">
+			<f:param value="#{msg1.medecin}" />
+		</h:outputFormat></title>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<h1>
+		<h:outputFormat value="#{msg1.addA}">
+			<f:param value="#{msg1.medecin}" />
+		</h:outputFormat>
+	</h1>
+	<h3>
+		<h:outputFormat value="#{msg1.enterMedecinValues}">
+			<f:param value="#{msg1.titre}" />
+			<f:param value="#{msg1.firstName}" />
+			<f:param value="#{msg1.lastName}" />
+			<f:param value="#{msg1.address}" />
+			<f:param value="#{msg1.telephones}" />
+			<f:param value="#{msg1.specialisation}" />
+			<f:param value="#{msg1.medecin}" />
+		</h:outputFormat>
+	</h3>
+
+	<h:form>
+		<table class="addModifTable">
+			<tr>
+				<td><h:outputText value="#{msg1.titre}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.titre}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="#{msg1.firstName}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.nom}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="#{msg1.lastName}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.prenom}" /></td>
+			</tr>
+				<tr>
+				<td colspan="2">
+					<hr></hr>
+				</td>
+			</tr>
+			<tr style="background: #888888;">
+				<td colspan="2"><h:outputText value="#{msg1.address}:" /></td>
+
+			</tr>
+			<tr style="background: #888888;">
+				<td><h:outputText value="#{msg1.numero}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.adresse.numero}" /></td>
+			</tr>
+			<tr style="background: #888888;">
+				<td><h:outputText value="#{msg1.voie}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.adresse.voie}" /></td>
+			</tr>
+			<tr style="background: #888888;">
+				<td><h:outputText value="#{msg1.codePostal}:" /></td>
+				<td><h:inputText
+						value="#{medecinCtrl.medecin.adresse.codePostal}" /></td>
+			</tr>
+			<tr style="background: #888888;">
+				<td><h:outputText value="#{msg1.ville}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.adresse.ville}" /></td>
+			</tr>
+			<tr style="background: #888888;">
+				<td><h:outputText value="#{msg1.pays}:" /></td>
+				<td><h:inputText value="#{medecinCtrl.medecin.adresse.pays}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr></hr>
+				</td>
+			</tr>
+			<tr>
+				<td><h:outputText value="#{msg1.specialisations}:" /></td>
+				<td><h:dataTable id="addMedecinSpecialisationTable"
+						value="#{medecinCtrl.medecin.specialisations}"
+						var="specialisation" width="100%" style="border:0px;">
+						<h:column>
+							<DIV style="display: inline-flex;">
+								<h:inputText value="#{specialisation.intitule}" size="10" />
+								<h:commandButton
+									actionListener="#{medecinCtrl.deleteSpecialisation(medecinCtrl.medecin,specialisation)}"
+									styleClass="redCrossButton" />
+							</DIV>
+						</h:column>
+					</h:dataTable> <h:commandButton value="#{msg1.addASpecialisation}"
+						actionListener="#{medecinCtrl.addSpecialisation(medecinCtrl.medecin)}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr></hr>
+				</td>
+			</tr>
+			<tr>
+				<td><h:outputText value="#{msg1.telephones}:" /></td>
+				<td><h:dataTable id="addMedecinTelephoneTable"
+						value="#{medecinCtrl.medecin.telephones}" var="telephone"
+						width="100%" style="border:0px;">
+						<h:column>
+							<DIV style="display: inline-flex;">
+								<h:inputText value="#{telephone.numero}" size="10" onkeypress="if(event.which &lt; 48 || event.which &gt; 57 ) if(event.which != 8) if(event.keyCode != 9) return false;" />
+
+								<h:commandButton
+									actionListener="#{medecinCtrl.deleteTelephone(medecinCtrl.medecin,telephone)}"
+									styleClass="redCrossButton" />
+							</DIV>
+
+						</h:column>
+
+					</h:dataTable> <h:commandButton value="#{msg1.addANumber}"
+						actionListener="#{medecinCtrl.addTelephone(medecinCtrl.medecin)}" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr></hr>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton id="addMedecinButton"
+						value="#{msg1.save}"
+						action="#{medecinCtrl.outToListAll}"
+						actionListener="#{medecinCtrl.saveMedecin}" styleClass="addButton" /></td>
+
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton id="cancel"
+						value="#{msg1.cancel}"
+						action="#{medecinCtrl.outToListAll}"
+						 styleClass="deleteButton" /></td>
+
+			</tr>
+		</table>
+
+
+
+	</h:form>
+
+
+
+
+
+</h:body>
+</html>
